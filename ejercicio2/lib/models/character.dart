@@ -1,4 +1,6 @@
-class Character {
+import 'package:ejercicio2/mixins/printable_mixin.dart';
+
+class Character with PrintableMixin{
   final int id;
   final String name;
   final String status;
@@ -33,4 +35,12 @@ class Character {
         'type': type,
         'gender': gender,
       };
+  void printCharacterDetails(){
+    printDetails('''ID:     $id\n 
+                    Name:   $name\n
+                    Status: $status\n
+                    Species:$species\n
+                    Type:   $type\n
+                    Gender: $gender\n ''');
+  }
 }

@@ -1,7 +1,4 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:ejercicio2/models/character.dart';
-
 
 class CharacterApi{
   final int count;
