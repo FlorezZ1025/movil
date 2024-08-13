@@ -7,7 +7,7 @@ void main(List<String> arguments) async {
   // Write how many characters you want to get from the API
   //in the function below
   int count = 3;
-  
+
   List<Character> characters = await apiService.getCharacters(count);
 
   List<Character> charactersCached = await apiService.getCharacters(count);

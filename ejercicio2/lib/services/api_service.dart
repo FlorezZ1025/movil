@@ -14,20 +14,18 @@ class ApiService with CacheMixin {
       print('Fetching characters from cache...');
       return getFromCache(cacheKey);
     } 
-    else {
-      final response = await http.get(Uri.parse('$_baseUrl/character'));
+   
+    final response = await http.get(Uri.parse('$_baseUrl/character'));
 
-      if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
-        final characterApi = CharacterApi.fromJson(json);
-        List<Character> characters =
-            characterApi.results.take(count ?? 1).toList();
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      final characterApi = CharacterApi.fromJson(json);
+      List<Character> characters = characterApi.results.take(count ?? 1).toList();
 
-        saveToCache(cacheKey, characters);
-        return characters;
+      saveToCache(cacheKey, characters);
+      return characters;
       } else {
         throw Exception('Failed to load characters');
-      }
     }
   }
 }
