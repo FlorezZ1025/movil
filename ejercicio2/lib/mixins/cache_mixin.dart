@@ -6,7 +6,6 @@ mixin CacheMixin {
   void saveToCache(String key, List<Character> value) {
     _cache[key] = value;
     print('Data saved to cache with key: $key');
-
   }
 
   List<Character> getFromCache(String key) {
