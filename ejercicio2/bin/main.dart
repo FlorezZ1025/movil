@@ -4,24 +4,30 @@ import 'package:ejercicio2/services/api_service.dart';
 void main(List<String> arguments) async {
   final apiService = ApiService();
 
-  // Write how many characters you want to get from the API
-  //in the function below
-/*
-  List<Character> characters = await apiService.getCharacters(count);
-  List<Character> charactersCached = await apiService.getCharacters(count);
-  List<Character> charactersCached2 = await apiService.getCharacters(count);
+  //--------------Personajes por página (Máximo 43)
 
-  characters.forEach((character) => print(character));
+  int page = 32;
+  List<Character> characters = await apiService.getCharactersByPage(page);
 
-  Character character = await apiService.getCharacterById(18);
-  print(character);
-  
-  print(characters[0].species);
-  print(charactersCached[0].species);
-  print(charactersCached2[0].species);  
-*/
+  //Para verificar el funcionamiento del mixin de cache
   // ignore: unused_local_variable
-  await for (var charByPage in apiService.getAllCharacters(40)) {
+  List<Character> charactersCached = await apiService.getCharactersByPage(page);
+  
+  characters.forEach((character) => print('$character'));
+
+
+  //--------------Personaje dado un ID (desde el 1 hasta el 826)
+  /*
+  int Id = 796;
+  Character characterById = await apiService.getCharacterById(Id);
+  print(characterById);
+*/
+
+  //-------------Todos los personajes hasta la página dada (desde la 1 hasta la 42)
+  /*
+  int pages = 42;
+  
+  await for (List<Character> charByPage in apiService.getAllCharacters(pages)) {
     charByPage.forEach((character) => print(character));
-  }
+  }*/
 }
